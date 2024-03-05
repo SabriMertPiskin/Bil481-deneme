@@ -45,13 +45,13 @@ class Data_for_aircraft:
         self.geo_altitude = geo_altitude
 #Manipulation values can be changed
 def  Manipulate_Data(icao24 = "", time_position = 0, longitude = 0, latitude = 0, velocity = 0, geo_altitude = 0):
-    if(!error_longitude):
+    if(not error_longitude):
       n_longitude = longitude*manipulation_rate
-    if(!error_latitude):
+    if(not error_latitude):
       n_latitude =  latitude*manipulation_rate
-    if(!error_velocity):
+    if(not error_velocity):
       n_velocity =  velocity*manipulation_rate
-    if(!error_geo_altitude):
+    if(not error_geo_altitude):
       n_geo_altitude = geo_altitude*manipulation_rate
 
       return Data_for_aircraft(icao24, time_position, n_longitude, n_latitude, n_velocity, n_geo_altitude)
