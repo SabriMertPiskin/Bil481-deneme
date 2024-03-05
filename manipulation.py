@@ -1,6 +1,10 @@
 from opensky_api import OpenSkyApi
 from datetime import datetime
 
+
+manipulation_rate = 0.97 #Should taken by user
+
+
 api = OpenSkyApi()
 # bbox = (min latitude, max latitude, min longitude, max longitude)
 
@@ -41,14 +45,14 @@ class Data_for_aircraft:
         self.geo_altitude = geo_altitude
 #Manipulation values can be changed
 def  Manipulate_Data(icao24 = "", time_position = 0, longitude = 0, latitude = 0, velocity = 0, geo_altitude = 0):
-    if(longitude != None):
-      n_longitude = longitude*0.97
-    if(latitude != None):
-      n_latitude =  latitude*0.97
-    if(velocity != None):
-      n_velocity =  velocity*0.97
-    if(geo_altitude != None):
-      n_geo_altitude = geo_altitude*0.97
+    if(!error_longitude):
+      n_longitude = longitude*manipulation_rate
+    if(!error_latitude):
+      n_latitude =  latitude*manipulation_rate
+    if(!error_velocity):
+      n_velocity =  velocity*manipulation_rate
+    if(!error_geo_altitude):
+      n_geo_altitude = geo_altitude*manipulation_rate
 
       return Data_for_aircraft(icao24, time_position, n_longitude, n_latitude, n_velocity, n_geo_altitude)
     
