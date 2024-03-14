@@ -14,3 +14,4 @@ C:\Users\ASUS\source\repos\UI_Bil481_proje\UI_Bil481_proje\obj\Debug\net8.0-wind
 C:\Users\ASUS\source\repos\UI_Bil481_proje\UI_Bil481_proje\obj\Debug\net8.0-windows\UI_Bil481_proje.pdb
 C:\Users\ASUS\source\repos\UI_Bil481_proje\UI_Bil481_proje\obj\Debug\net8.0-windows\UI_Bil481_proje.genruntimeconfig.cache
 C:\Users\ASUS\source\repos\UI_Bil481_proje\UI_Bil481_proje\obj\Debug\net8.0-windows\ref\UI_Bil481_proje.dll
+C:\Users\ASUS\source\repos\UI_Bil481_proje\UI_Bil481_proje\obj\Debug\net8.0-windows\UI_Bil481_proje.Properties.Resources.resources
