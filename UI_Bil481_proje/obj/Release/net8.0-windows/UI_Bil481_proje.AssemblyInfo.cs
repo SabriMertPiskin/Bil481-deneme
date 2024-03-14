@@ -12,9 +12,9 @@ using System;
 using System.Reflection;
 
 [assembly: System.Reflection.AssemblyCompanyAttribute("UI_Bil481_proje")]
-[assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
+[assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1f737b651bb5731cdace172d0b07e68384257b6f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+161f61095641446236b835a0239ef3019fc6d8e0")]
 [assembly: System.Reflection.AssemblyProductAttribute("UI_Bil481_proje")]
 [assembly: System.Reflection.AssemblyTitleAttribute("UI_Bil481_proje")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

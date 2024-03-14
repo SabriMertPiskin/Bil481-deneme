@@ -1,5 +1,3 @@
-using Newtonsoft.Json;
-using System.Diagnostics;
 
 namespace UI_Bil481_proje
 {
@@ -32,77 +30,100 @@ namespace UI_Bil481_proje
 
         private void Continue_Click(object sender, EventArgs e)
         {
-            int en = 0;
-            int boy = 0;
+            
 
-
-            if (enlem.Text.Equals(""))
+            if (enlem1.Text.Equals(""))
             {
-                MessageBox.Show("enlem boþ býrakýlamaz !!!");
+                MessageBox.Show("enlem boþ býrakýlamaz...");
             }
-            else if (boylam.Text.Equals(""))
+            else if (boylam1.Text.Equals(""))
             {
-                MessageBox.Show("boylam boþ býrakýlamaz !!!");
+                MessageBox.Show("boylam boþ býrakýlamaz...");
             }
             else
             {
-                if (int.TryParse(enlem.Text, out en) && int.TryParse(boylam.Text, out boy))
-                {
-                    string temp = en + "";
-                    MessageBox.Show(temp);
 
-                    Dictionary<string, int> userData = new Dictionary<string, int>()
-{
-    { "enlem", en },
-    { "boylam", boy },
-     {ucak_adi.Text, 0},
-    // Uçak adýný da yakalýyorsanýz buraya "ucak_adi" ekleyin
-};
-
-                    // Kullanýcý verisi sözlüðünü JSON formatýna dönüþtürün
-                    string jsonData = JsonConvert.SerializeObject(userData, Formatting.Indented);
-
-                    // Doðrulama için JSON stringini gösterin (isteðe baðlý)
-                    MessageBox.Show(jsonData, "Kullanýcý Verileri (JSON)");
-
-                    SendDataToPython(jsonData);
-
-                    // send ucak_adi, en, boy
+                double e1 = 0, e2 = 0, b1 = 0, b2 = 0;
+                
+                try { 
+                    e1 = double.Parse(enlem1.Text, System.Globalization.CultureInfo.InvariantCulture);
+                    if (!(e1 <= 90 && e1 >= -90))
+                    {
+                        e1 = 0;
+                        throw new Exception("enlem1 uygun aralýkta deðil... Tekrar deneyiniz...");
+                    }
                 }
-                else if (!int.TryParse(enlem.Text, out en) && int.TryParse(boylam.Text, out boy))
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Hatalý enlem formatý !!!");
+                    MessageBox.Show("enlem1 geçerli deðil... " + ex.Message);
                 }
-                else if (int.TryParse(enlem.Text, out en) && !int.TryParse(boylam.Text, out boy))
+
+                try
                 {
-                    MessageBox.Show("Hatalý boylam formatý !!!");
+                    e2 = double.Parse(enlem2.Text, System.Globalization.CultureInfo.InvariantCulture);
+                    if (!(e2 <= 90 && e2 >= -90) && e1 > e2)
+                    {
+                        e2 = 0;
+                        throw new Exception("enlem2 uygun aralýkta deðil... Tekrar deneyiniz...");
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Hatalý format !!!");
+                    MessageBox.Show("enlem2 geçerli deðil... " + ex.Message);
                 }
+
+                try
+                {
+                    b1 = double.Parse(boylam1.Text, System.Globalization.CultureInfo.InvariantCulture);
+                    if (!(b1 <= 180 && b1 >= -180))
+                    {
+                        b1 = 0;
+                        throw new Exception("boylam1 uygun aralýkta deðil... Tekrar deneyiniz...");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("boylam1 geçerli deðil... " + ex.Message);
+                }
+
+                try
+                {
+                    b2 = double.Parse(boylam2.Text, System.Globalization.CultureInfo.InvariantCulture);
+                    if (!(b2 <= 180 && b2 >= -180) && b1 > b2)
+                    {
+                        b2 = 0;
+                        throw new Exception("boylam2 uygun aralýkta deðil... Tekrar deneyiniz...");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("boylam2 geçerli deðil... " + ex.Message);
+                }
+
+
+                // send data (writing input.txt)
+                try
+                {
+                    //Pass the filepath and filename to the StreamWriter Constructor
+                    String path = "C:\\Users\\ASUS\\source\\repos\\UI_Bil481_proje\\UI_Bil481_proje";
+                    StreamWriter sw = new StreamWriter(path + "\\input.txt");
+                    
+                    sw.WriteLine(e1);
+                    sw.WriteLine(e2);
+                    sw.WriteLine(b1);
+                    sw.WriteLine(b2);
+                    sw.WriteLine(ucak_adi.Text);
+                    sw.Close();
+                }
+                    catch (Exception ex)
+                    {
+                    MessageBox.Show("Dosyaya yazýlamadý... Exception: " + ex.Message + "\nTekrar gönderiniz...");
+                    }
+               
             }
         }
 
-        private void SendDataToPython(string jsonData)
-        {
-            // manipulation.py script'inin gerçek yolunu girin
-            string pythonScriptPath = @"manipulation.py";
-
-            // JSON verisini argüman olarak kullanarak Python script'ini çalýþtýran bir iþlem oluþturun
-            Process process = new Process();
-            process.StartInfo.FileName = "python";
-            process.StartInfo.Arguments = $"{pythonScriptPath} {jsonData}";
-            process.StartInfo.UseShellExecute = false;
-            process.StartInfo.RedirectStandardOutput = true;
-
-            process.Start();
-
-            process.WaitForExit();
-
-
-        }
-
+       
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
 
@@ -116,6 +137,16 @@ namespace UI_Bil481_proje
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
         }
