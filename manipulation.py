@@ -83,6 +83,7 @@ icao24_of_theAircarft = ""
 
 
 # Assume the .txt file same folder with manipulation.py
+#Helper method for Import_UI_variables method
 def Access_File():
     current_folder = os.getcwd()
     file_name = "input.txt"
@@ -92,6 +93,7 @@ def Access_File():
 
 
 # read the .txt file line by line and using for class variable decleration
+# declare all the variables from .txt file to global python variables  after calling
 def Import_UI_variables():
     # variable names for global declaration
     variable_names = ["min_latitude", "max_latitude", "min_longitude", "max_longitude", "icao24_of_theAircarft"]
