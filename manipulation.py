@@ -1,5 +1,6 @@
 from opensky_api import OpenSkyApi
 from datetime import datetime, timedelta
+import os
 
 api = OpenSkyApi("taric49","openskyapipasswordtaric66")
 # bbox = (min latitude, max latitude, min longitude, max longitude)
@@ -79,6 +80,33 @@ min_longitude = -180
 max_longitude = 180
 
 icao24_of_theAircarft = ""
+
+
+# Assume the .txt file same folder with manipulation.py
+def Access_File():
+    current_folder = os.getcwd()
+    file_name = "input.txt"
+    current_path_of_file = os.path.join(current_folder, file_name)
+    return current_path_of_file
+
+
+
+# read the .txt file line by line and using for class variable decleration
+def Import_UI_variables():
+    # variable names for global declaration
+    variable_names = ["min_latitude", "max_latitude", "min_longitude", "max_longitude", "icao24_of_theAircarft"]
+
+
+    with open(Access_File(), "r") as dosya:
+        for i, line in enumerate(dosya):
+            # variable names
+            degisken_adi = variable_names[i]
+            # strip the file line by line
+            deger = line.strip()
+            # global variable declaration
+            globals()[degisken_adi] = deger
+
+
 
 # I cannot specify time  why?
 state_vectors = api.get_states(0, None, bbox=(min_latitude, max_latitude, min_longitude, max_longitude))
