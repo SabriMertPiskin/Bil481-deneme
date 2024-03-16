@@ -11,15 +11,14 @@ url = "http://a.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png"
 attribution = "Tiles by Carto, under CC by 3.0. Data by OSM, under ODbL"
 
 
-def setStartingCoordinates(x1,x2,y1,y2): #BİTMEDİ
-    x_center, y_center = wgs84_to_web_mercator2(39.9334, 32.8597) #ankara merkezli yapmak
+def setStartingCoordinates(lat,lon): #BİTMEDİ
+    x_center, y_center = wgs84_to_web_mercator2(lat,lon) #ankara merkezli yapmak
     x_range_start = x_center - (x_range[1] - x_range[0]) / 2
     y_range_start = y_center - (y_range[1] - y_range[0]) / 2
     p.x_range.start = x_range_start
     p.x_range.end = x_range_start + (x_range[1] - x_range[0])
     p.y_range.start = y_range_start
     p.y_range.end = y_range_start + (y_range[1] - y_range[0])
-    p.zoom = 6
 
 
 
@@ -41,13 +40,12 @@ def haritaOlustur():
     
     show(p)
 def elemanEkle(lan,lon): #uçak lan lonları buna verilecek
-    nycKor = 40.728333,-73.994167
-    data = dict(name = "NYC", lat = nycKor[0],lon = nycKor[1],index=[0])
+    data = dict(name = "NYC", lat = lan,lon = lon,index=[0])
     df = pd.DataFrame(data)
     newdf = wgs84_to_web_mercator(df)
-    p.circle(x=df['x'],y=df['y'],fill_color="firebrick",size=15)
-
-setStartingCoordinates(0,0,0,0)
-
-elemanEkle(0,0)
+    p.circle(x=newdf['x'],y=newdf['y'],fill_color="firebrick",size=15)
+ankara_kor = 39.9334, 32.8597
+setStartingCoordinates(ankara_kor[0],ankara_kor[1])
+nycKor = 40.728333,-73.994167
+elemanEkle(nycKor[0], nycKor[1])
 haritaOlustur()
