@@ -11,7 +11,7 @@ url = "http://a.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png"
 attribution = "Tiles by Carto, under CC by 3.0. Data by OSM, under ODbL"
 
 
-def setStartingCoordinates(lat,lon): #BİTMEDİ
+def setStartingCoordinates(lat,lon): 
     x_center, y_center = wgs84_to_web_mercator2(lat,lon) #ankara merkezli yapmak
     x_range_start = x_center - (x_range[1] - x_range[0]) / 2
     y_range_start = y_center - (y_range[1] - y_range[0]) / 2
@@ -39,7 +39,7 @@ def haritaOlustur():
     p.add_tile(WMTSTileSource(url=url,attribution=attribution))
     
     show(p)
-def elemanEkle(lan,lon): #uçak lan lonları buna verilecek
+def elemanEkle(lan,lon,planeName): #uçak lan lonları buna verilecek
     data = dict(name = "NYC", lat = lan,lon = lon,index=[0])
     df = pd.DataFrame(data)
     newdf = wgs84_to_web_mercator(df)
@@ -47,5 +47,5 @@ def elemanEkle(lan,lon): #uçak lan lonları buna verilecek
 ankara_kor = 39.9334, 32.8597
 setStartingCoordinates(ankara_kor[0],ankara_kor[1])
 nycKor = 40.728333,-73.994167
-elemanEkle(nycKor[0], nycKor[1])
+elemanEkle(nycKor[0], nycKor[1],"ucakNewYork")
 haritaOlustur()
