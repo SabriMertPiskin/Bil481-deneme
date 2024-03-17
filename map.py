@@ -33,13 +33,18 @@ def haritaOlustur():
     p.add_tile(WMTSTileSource(url=URL, attribution=ATTRIBUTION))
     show(p)
 
-def elemanEkle(lan, lon, address, planeName):
-    data = dict(name=planeName, lat=[lan], lon=[lon], address=[address])
+def elemanEkle(lan, lon, planeName, velocity, altitude,isManipulated):
+    latlon = str(lan) + " ," + str(lon)
+    data = dict(name=planeName, lat=[lan], lon=[lon], address=[latlon], velocity=[velocity], altitude=[altitude])
     df = pd.DataFrame(data)
+    
     newdf = wgs84_to_web_mercator(df)
     source = ColumnDataSource(newdf)
-    p.circle(x='x', y='y', fill_color="green", size=15, source=source)
-    hover = HoverTool(tooltips=[('Address', '@address')])
+    if(isManipulated == True):
+        p.circle(x='x', y='y', fill_color="black", size=15, source=source)
+    else:
+        p.circle(x='x', y='y', fill_color="red", size=15, source=source)
+    hover = HoverTool(tooltips=[('Address', '@address'),('Velocity', '@velocity'),('Altitude', '@altitude')])#add plane name,velocity,altitude
     p.add_tools(hover)
     
 
@@ -54,5 +59,6 @@ setStartingCoordinates(*ANKARA_COORDINATES)
 
 # Add airplane coordinates and display map
 nycKor = (40.728333, -73.994167)
-elemanEkle(*nycKor, "40.728333, -73.994167", "ucakNewYork")
+elemanEkle(*nycKor, "ucakNewYork",50,60,True)
+elemanEkle(40,-70, "ucakNewYork",50,60,False)
 haritaOlustur()
