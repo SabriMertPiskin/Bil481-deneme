@@ -17,7 +17,7 @@ kullanmak için şunları yükleyiniz:
   		Sabri Mert Pişkin
     		https://github.com/SabriMertPiskin
   		Tarık Derici
-    		https://github.com/
+    		https://github.com/taric49
   		Ulaş Kaya
     		https://github.com/AyakSalu
   
