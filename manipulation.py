@@ -75,7 +75,7 @@ class Data_for_aircraft:
     
         # Assume the .txt file same folder with manipulation.py
         #Helper method for Import_UI_variables method
-        def Access_File():
+    def Access_File():
             current_folder = os.getcwd()
             file_name = "input.txt"
             current_path_of_file = os.path.join(current_folder, file_name)
@@ -88,17 +88,35 @@ class Data_for_aircraft:
         def Import_UI_variables():
             # variable names for global declaration
             variable_names = ["min_latitude", "max_latitude", "min_longitude", "max_longitude", "icao24_of_theAircarft"]
-    
-    
+            latitude_values = []
+            longitude_values = []
             with open(Access_File(), "r") as dosya:
-                for i, line in enumerate(dosya):
-                    # variable names
-                    degisken_adi = variable_names[i]
-                    # strip the file line by line
-                    deger = line.strip()
-                    # global variable declaration
-                    globals()[degisken_adi] = deger
+                # Okunan satırların değerlerini saklamak için listeler oluşturalım
+                
+                icao24_value = ""  # icao24 değişkeninin başlangıç değeri
     
+                for i, line in enumerate(dosya):
+                    if i < 2:  # İlk iki satır enlem değerleri
+                        deger = float(line.strip())
+                        latitude_values.append(deger)
+                    elif i < 4:  # Sonraki iki satır boylam değerleri
+                        deger = float(line.strip())
+                        longitude_values.append(deger)
+                    else:  # Son satır icao24 değeri
+                        deger = line.strip()
+                        icao24_value = deger
+    
+            # Min ve max değerlerini belirleyelim
+            min_latitude = min(latitude_values)
+            max_latitude = max(latitude_values)
+            min_longitude = min(longitude_values)
+            max_longitude = max(longitude_values)
+            # global variable declaration
+            globals()["min_latitude"] = min_latitude
+            globals()["max_latitude"] = max_latitude
+            globals()["min_longitude"] = min_longitude
+            globals()["max_longitude"] = max_longitude
+            globals()["icao24_of_theAircarft"] = icao24_value
     
     
         # I cannot specify time  why?
