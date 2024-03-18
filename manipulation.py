@@ -111,12 +111,8 @@ class Data_for_aircraft:
             max_latitude = max(latitude_values)
             min_longitude = min(longitude_values)
             max_longitude = max(longitude_values)
-            # global variable declaration
-            globals()["min_latitude"] = min_latitude
-            globals()["max_latitude"] = max_latitude
-            globals()["min_longitude"] = min_longitude
-            globals()["max_longitude"] = max_longitude
-            globals()["icao24_of_theAircarft"] = icao24_value
+            return min_latitude, max_latitude, min_longitude, max_longitude, icao24_value
+
     
     
         # I cannot specify time  why?
