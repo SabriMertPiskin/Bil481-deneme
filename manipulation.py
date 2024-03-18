@@ -1,11 +1,8 @@
 from opensky_api import OpenSkyApi
-from datetime import datetime
+from datetime import datetime, timedelta
+import os
 
-
-manipulation_rate = 0.97 #Should taken by user
-
-
-api = OpenSkyApi()
+api = OpenSkyApi("taric49","openskyapipasswordtaric66")
 # bbox = (min latitude, max latitude, min longitude, max longitude)
 
 #Data of the aircraft that we need
@@ -43,59 +40,93 @@ class Data_for_aircraft:
         self.latitude = latitude
         self.velocity = velocity
         self.geo_altitude = geo_altitude
-#Manipulation values can be changed
-def  Manipulate_Data(icao24 = "", time_position = 0, longitude = 0, latitude = 0, velocity = 0, geo_altitude = 0):
-    if(not error_longitude):
-      n_longitude = longitude*manipulation_rate
-    if(not error_latitude):
-      n_latitude =  latitude*manipulation_rate
-    if(not error_velocity):
-      n_velocity =  velocity*manipulation_rate
-    if(not error_geo_altitude):
-      n_geo_altitude = geo_altitude*manipulation_rate
-
-      return Data_for_aircraft(icao24, time_position, n_longitude, n_latitude, n_velocity, n_geo_altitude)
     
-#User gives input for below variables
-Aircraft_Tuples = {}
-
-year = 2005
-month = 2
-day = 25
-hour = 10
-minute = 30
-second = 15
-seconds_since_epoch = int(datetime(year, month, day, hour, minute, second).timestamp())
-
-#print(seconds_since_epoch)
-
-min_latitude = 45.8389
-max_latitude = 47.8229
-min_longitude = 5.9962
-max_longitude = 10.5226
-# I cannot specify time  why?
-states = api.get_states(0, None, bbox=(min_latitude, max_latitude, min_longitude, max_longitude))
-
-if(states != None):
-    print(f'TIME: {states.time}')
-    for s in states.states:
-        print(f'ICAO24: {s.icao24} Time_Position: {s.time_position}  Longitude: {s.longitude} Latitude: {s.latitude} Velocity: {s.velocity} Geo_altitude: {s.geo_altitude}')
-        
-        aircraft = Data_for_aircraft(s.icao24, s.time_position, s.longitude, s.latitude, s.velocity, s.geo_altitude)
-        
-        manipulated_aircraft = Manipulate_Data(s.icao24, s.time_position, s.longitude, s.latitude, s.velocity, s.geo_altitude)
-        
-        if(manipulated_aircraft != None):
-            Aircraft_Tuples[s.icao24] = (aircraft, manipulated_aircraft)
+    #Manipulation values can be changed
+    @staticmethod
+    def  Manipulate_Data(icao24 = "", time_position = 0, longitude = 0, latitude = 0, velocity = 0, geo_altitude = 0):
+        n_latitude = 0
+        n_longitude = 0
+        n_velocity = 0
+        n_geo_altitude = 0
+    
+        if(longitude != None):
+          modifier_long = 0.97 if longitude>=0 else 1.03
+          n_longitude = longitude*modifier_long
+        if(latitude != None):
+          modifier_lat = 0.97 if latitude>=0 else 1.03
+          n_latitude =  latitude*modifier_lat
+        if(velocity != None and velocity != 0):
+          n_velocity =  velocity*0.97
+        if(geo_altitude != None and geo_altitude != 0):
+          n_geo_altitude = geo_altitude*0.97
+    
+          return Data_for_aircraft(icao24, time_position, n_longitude, n_latitude, n_velocity, n_geo_altitude)
+    @staticmethod
+    def returnAircrafData():
+        Aircraft_Tuples = {}
+    
+        min_latitude = -90
+        max_latitude = 90
+        min_longitude = -180
+        max_longitude = 180
+    
+        icao24_of_theAircarft = ""
+    
+    
+        # Assume the .txt file same folder with manipulation.py
+        #Helper method for Import_UI_variables method
+        def Access_File():
+            current_folder = os.getcwd()
+            file_name = "input.txt"
+            current_path_of_file = os.path.join(current_folder, file_name)
+            return current_path_of_file
+    
+    
+    
+        # read the .txt file line by line and using for class variable decleration
+        # declare all the variables from .txt file to global python variables  after calling
+        def Import_UI_variables():
+            # variable names for global declaration
+            variable_names = ["min_latitude", "max_latitude", "min_longitude", "max_longitude", "icao24_of_theAircarft"]
+    
+    
+            with open(Access_File(), "r") as dosya:
+                for i, line in enumerate(dosya):
+                    # variable names
+                    degisken_adi = variable_names[i]
+                    # strip the file line by line
+                    deger = line.strip()
+                    # global variable declaration
+                    globals()[degisken_adi] = deger
+    
+    
+    
+        # I cannot specify time  why?
+        state_vectors = api.get_states(0, None, bbox=(min_latitude, max_latitude, min_longitude, max_longitude))
+    
+        if(state_vectors != None):
+            print(f'TIME: {state_vectors.time}')
+            for s in state_vectors.states:
+                print(f'ICAO24: {s.icao24} Time_Position: {s.time_position}  Longitude: {s.longitude} Latitude: {s.latitude} Velocity: {s.velocity} Geo_altitude: {s.geo_altitude}')
+                
+                aircraft = Data_for_aircraft(s.icao24, s.time_position, s.longitude, s.latitude, s.velocity, s.geo_altitude)
+                
+                manipulated_aircraft = Data_for_aircraft.Manipulate_Data(s.icao24, s.time_position, s.longitude, s.latitude, s.velocity, s.geo_altitude)
+                
+                if(manipulated_aircraft != None):
+                    Aircraft_Tuples[s.icao24] = (aircraft, manipulated_aircraft)
+                else:
+                    print("Can not manipulate")
         else:
-            print("Can not manipulate")
-else:
-    print("There is no data")
-
+            print("There is no data")
+        return Aircraft_Tuples
+    
 #printing pairs of original and manipulated data
+Aircraft_Tuples = Data_for_aircraft.returnAircrafData()
 for key in Aircraft_Tuples:
     (a,b) = Aircraft_Tuples[key]
     print(f'ICAO24: {a.icao24} Time_Position: {a.time_position}  Longitude: {a.longitude} Latitude: {a.latitude} Velocity: {a.velocity} Geo_altitude: {a.geo_altitude}')
     print(f'ICAO24: {b.icao24} Time_Position: {b.time_position}  Longitude: {b.longitude} Latitude: {b.latitude} Velocity: {b.velocity} Geo_altitude: {b.geo_altitude}')        
     print()
-    
+#Check if all aircraft data manipulated
+#print(f'Total Aircraft Number :{len(state_vectors.states)} \n Manipulated Aircrafts Number: {len(Aircraft_Tuples)}')
