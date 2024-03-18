@@ -9,15 +9,15 @@ kullanmak için şunları yükleyiniz:
         pip install bokeh
 
 
-Contibutors:
-  	Emirhan Yavuz
-    	https://github.com/emirhanyavuzz
-  	Sabri Mert Pişkin
-    	https://github.com/SabriMertPiskin
-  	Ömer İlbilgi
-    	https://github.com/omerilbilgi
-  	Tarık Derici
-    	https://github.com/
-  	Ulaş Kaya
-    	https://github.com/AyakSalu
+	Contibutors:
+  		Emirhan Yavuz
+    		https://github.com/emirhanyavuzz
+	  Ömer İlbilgi
+    		https://github.com/omerilbilgi
+  		Sabri Mert Pişkin
+    		https://github.com/SabriMertPiskin
+  		Tarık Derici
+    		https://github.com/
+  		Ulaş Kaya
+    		https://github.com/AyakSalu
   
