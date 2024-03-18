@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -42,6 +43,10 @@
             enlem2 = new TextBox();
             label5 = new Label();
             label6 = new Label();
+            pictureBox1 = new PictureBox();
+            pictureBox2 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -50,7 +55,7 @@
             label1.Font = new Font("Segoe UI", 48F, FontStyle.Bold, GraphicsUnit.Point, 162);
             label1.ForeColor = SystemColors.ActiveCaption;
             label1.ImageAlign = ContentAlignment.MiddleRight;
-            label1.Location = new Point(324, 55);
+            label1.Location = new Point(342, 26);
             label1.Name = "label1";
             label1.Size = new Size(488, 106);
             label1.TabIndex = 0;
@@ -62,7 +67,7 @@
             // 
             label2.AutoSize = true;
             label2.ForeColor = SystemColors.Control;
-            label2.Location = new Point(452, 271);
+            label2.Location = new Point(408, 251);
             label2.Name = "label2";
             label2.Size = new Size(50, 20);
             label2.TabIndex = 1;
@@ -72,7 +77,7 @@
             // 
             label3.AutoSize = true;
             label3.ForeColor = SystemColors.ButtonFace;
-            label3.Location = new Point(452, 315);
+            label3.Location = new Point(408, 295);
             label3.Name = "label3";
             label3.Size = new Size(59, 20);
             label3.TabIndex = 2;
@@ -80,7 +85,7 @@
             // 
             // enlem1
             // 
-            enlem1.Location = new Point(526, 267);
+            enlem1.Location = new Point(482, 247);
             enlem1.Margin = new Padding(3, 4, 3, 4);
             enlem1.Name = "enlem1";
             enlem1.Size = new Size(114, 27);
@@ -91,7 +96,7 @@
             // 
             Continue.BackColor = Color.GreenYellow;
             Continue.BackgroundImageLayout = ImageLayout.Center;
-            Continue.Location = new Point(726, 366);
+            Continue.Location = new Point(682, 346);
             Continue.Margin = new Padding(3, 4, 3, 4);
             Continue.Name = "Continue";
             Continue.Size = new Size(86, 31);
@@ -102,7 +107,7 @@
             // 
             // boylam1
             // 
-            boylam1.Location = new Point(526, 311);
+            boylam1.Location = new Point(482, 291);
             boylam1.Margin = new Padding(3, 4, 3, 4);
             boylam1.Name = "boylam1";
             boylam1.Size = new Size(114, 27);
@@ -110,7 +115,7 @@
             // 
             // ucak_adi
             // 
-            ucak_adi.Location = new Point(526, 214);
+            ucak_adi.Location = new Point(482, 194);
             ucak_adi.Margin = new Padding(3, 4, 3, 4);
             ucak_adi.Name = "ucak_adi";
             ucak_adi.Size = new Size(114, 27);
@@ -127,7 +132,7 @@
             // 
             label4.AutoSize = true;
             label4.ForeColor = SystemColors.ButtonFace;
-            label4.Location = new Point(452, 218);
+            label4.Location = new Point(408, 198);
             label4.Name = "label4";
             label4.Size = new Size(68, 20);
             label4.TabIndex = 8;
@@ -135,7 +140,7 @@
             // 
             // boylam2
             // 
-            boylam2.Location = new Point(698, 311);
+            boylam2.Location = new Point(654, 291);
             boylam2.Margin = new Padding(3, 4, 3, 4);
             boylam2.Name = "boylam2";
             boylam2.Size = new Size(114, 27);
@@ -143,7 +148,7 @@
             // 
             // enlem2
             // 
-            enlem2.Location = new Point(698, 267);
+            enlem2.Location = new Point(654, 247);
             enlem2.Margin = new Padding(3, 4, 3, 4);
             enlem2.Name = "enlem2";
             enlem2.Size = new Size(114, 27);
@@ -156,7 +161,7 @@
             label5.Font = new Font("Segoe UI", 25.8000011F, FontStyle.Bold, GraphicsUnit.Point, 162);
             label5.ForeColor = SystemColors.ActiveCaption;
             label5.ImageAlign = ContentAlignment.MiddleRight;
-            label5.Location = new Point(649, 284);
+            label5.Location = new Point(605, 264);
             label5.Name = "label5";
             label5.Size = new Size(43, 60);
             label5.TabIndex = 11;
@@ -170,19 +175,40 @@
             label6.Font = new Font("Segoe UI", 25.8000011F, FontStyle.Bold, GraphicsUnit.Point, 162);
             label6.ForeColor = SystemColors.ActiveCaption;
             label6.ImageAlign = ContentAlignment.MiddleRight;
-            label6.Location = new Point(649, 240);
+            label6.Location = new Point(605, 220);
             label6.Name = "label6";
             label6.Size = new Size(43, 60);
             label6.TabIndex = 12;
             label6.Text = "-";
             label6.TextAlign = ContentAlignment.TopCenter;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(62, 151);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(250, 226);
+            pictureBox1.TabIndex = 13;
+            pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click_1;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.Location = new Point(851, 151);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(250, 226);
+            pictureBox2.TabIndex = 14;
+            pictureBox2.TabStop = false;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaptionText;
-            ClientSize = new Size(1144, 515);
+            ClientSize = new Size(1193, 534);
+            Controls.Add(pictureBox2);
+            Controls.Add(pictureBox1);
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(boylam2);
@@ -197,6 +223,8 @@
             Controls.Add(label1);
             Name = "Form1";
             Text = "GIS UI";
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -216,5 +244,7 @@
         private TextBox enlem2;
         private Label label5;
         private Label label6;
+        private PictureBox pictureBox1;
+        private PictureBox pictureBox2;
     }
 }

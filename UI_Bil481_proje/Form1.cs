@@ -30,7 +30,7 @@ namespace UI_Bil481_proje
 
         private void Continue_Click(object sender, EventArgs e)
         {
-            
+
 
             if (enlem1.Text.Equals(""))
             {
@@ -44,8 +44,9 @@ namespace UI_Bil481_proje
             {
 
                 double e1 = 0, e2 = 0, b1 = 0, b2 = 0;
-                
-                try { 
+
+                try
+                {
                     e1 = double.Parse(enlem1.Text, System.Globalization.CultureInfo.InvariantCulture);
                     if (!(e1 <= 90 && e1 >= -90))
                     {
@@ -107,7 +108,7 @@ namespace UI_Bil481_proje
                     //Pass the filepath and filename to the StreamWriter Constructor
                     String path = "C:\\Users\\ASUS\\source\\repos\\UI_Bil481_proje\\UI_Bil481_proje";
                     StreamWriter sw = new StreamWriter(path + "\\input.txt");
-                    
+
                     sw.WriteLine(e1);
                     sw.WriteLine(e2);
                     sw.WriteLine(b1);
@@ -115,15 +116,15 @@ namespace UI_Bil481_proje
                     sw.WriteLine(ucak_adi.Text);
                     sw.Close();
                 }
-                    catch (Exception ex)
-                    {
+                catch (Exception ex)
+                {
                     MessageBox.Show("Dosyaya yazýlamadý... Exception: " + ex.Message + "\nTekrar gönderiniz...");
-                    }
-               
+                }
+
             }
         }
 
-       
+
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
 
@@ -147,6 +148,11 @@ namespace UI_Bil481_proje
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click_1(object sender, EventArgs e)
         {
 
         }
