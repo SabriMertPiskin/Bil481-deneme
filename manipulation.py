@@ -88,10 +88,10 @@ class Data_for_aircraft:
         def Import_UI_variables():
             # variable names for global declaration
             variable_names = ["min_latitude", "max_latitude", "min_longitude", "max_longitude", "icao24_of_theAircarft"]
+            # Okunan satırların değerlerini saklamak için listeler oluşturalım
             latitude_values = []
             longitude_values = []
             with open(Access_File(), "r") as dosya:
-                # Okunan satırların değerlerini saklamak için listeler oluşturalım
                 
                 icao24_value = ""  # icao24 değişkeninin başlangıç değeri
     
