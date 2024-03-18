@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ASUS\\source\\repos\\UI_Bil481_proje\\UI_Bil481_proje\\UI_Bil481_proje.csproj": {}
+    "C:\\Users\\ASUS\\Desktop\\Yeni klasör (4)\\Bil481-deneme\\UI_Bil481_proje\\UI_Bil481_proje.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ASUS\\source\\repos\\UI_Bil481_proje\\UI_Bil481_proje\\UI_Bil481_proje.csproj": {
+    "C:\\Users\\ASUS\\Desktop\\Yeni klasör (4)\\Bil481-deneme\\UI_Bil481_proje\\UI_Bil481_proje.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ASUS\\source\\repos\\UI_Bil481_proje\\UI_Bil481_proje\\UI_Bil481_proje.csproj",
+        "projectUniqueName": "C:\\Users\\ASUS\\Desktop\\Yeni klasör (4)\\Bil481-deneme\\UI_Bil481_proje\\UI_Bil481_proje.csproj",
         "projectName": "UI_Bil481_proje",
-        "projectPath": "C:\\Users\\ASUS\\source\\repos\\UI_Bil481_proje\\UI_Bil481_proje\\UI_Bil481_proje.csproj",
+        "projectPath": "C:\\Users\\ASUS\\Desktop\\Yeni klasör (4)\\Bil481-deneme\\UI_Bil481_proje\\UI_Bil481_proje.csproj",
         "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ASUS\\source\\repos\\UI_Bil481_proje\\UI_Bil481_proje\\obj\\",
+        "outputPath": "C:\\Users\\ASUS\\Desktop\\Yeni klasör (4)\\Bil481-deneme\\UI_Bil481_proje\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

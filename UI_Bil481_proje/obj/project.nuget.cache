@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "UBoWDZ0+aM9K9wUoNoHNZDe6nnXR2xe/Ca0ZomoiYU+2h/EwkHtzVCtMC2BEH01xd1qj96voDbvghLE2oXtdkA==",
+  "dgSpecHash": "bIPlTQ/RWRKxQtKysR9o3Dbc8IXIrukFOueCCaLN8KE48MDMxCDQXcI9yAO1kFTut5o1jLmlMzUP+zHWSioK1Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ASUS\\source\\repos\\UI_Bil481_proje\\UI_Bil481_proje\\UI_Bil481_proje.csproj",
+  "projectFilePath": "C:\\Users\\ASUS\\Desktop\\Yeni klasör (4)\\Bil481-deneme\\UI_Bil481_proje\\UI_Bil481_proje.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ASUS\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
   ],

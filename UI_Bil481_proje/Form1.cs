@@ -106,7 +106,7 @@ namespace UI_Bil481_proje
                 try
                 {
                     //Pass the filepath and filename to the StreamWriter Constructor
-                    String path = "C:\\Users\\ASUS\\source\\repos\\UI_Bil481_proje\\UI_Bil481_proje";
+                    String path = "C:\\Users\\ASUS\\Desktop\\Yeni klasör (4)\\Bil481-deneme";
                     StreamWriter sw = new StreamWriter(path + "\\input.txt");
 
                     sw.WriteLine(e1);
