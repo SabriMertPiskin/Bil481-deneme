@@ -1,5 +1,5 @@
 from bokeh.plotting import figure, show
-from bokeh.models import WMTSTileSource, HoverTool, ColumnDataSource,ImageURL
+from bokeh.models import WMTSTileSource, HoverTool, ColumnDataSource,ImageURL,Toolbar,WheelZoomTool
 import pandas as pd
 import numpy as np
 
@@ -8,10 +8,10 @@ URL = "http://a.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png"
 ATTRIBUTION = "Tiles by Carto, under CC by 3.0. Data by OSM, under ODbL"
 COORDINATES = x_range, y_range = ((-13884029, -7453304), (2698291, 6455972))
 ANKARA_COORDINATES = (39.9334, 32.8597)
-resim_url = "https://icons.iconarchive.com/icons/iconka/business-finance/24/paper-plane-icon.png"
-resim_url2="https://icons.iconarchive.com/icons/custom-icon-design/flatastic-10/24/Paper-plane-icon.png"
+resim_url = "https://icons.iconarchive.com/icons/iconka/business-finance/24/paper-plane-icon.png" #manipüle edilmiş uçak
+resim_url2="https://icons.iconarchive.com/icons/custom-icon-design/flatastic-10/24/Paper-plane-icon.png"#doğru uçak
 # Create Bokeh figure
-p = figure(tools="wheel_zoom,pan", x_range=x_range, y_range=y_range,
+p = figure(tools="pan", x_range=x_range, y_range=y_range,
            x_axis_type="mercator", y_axis_type="mercator",
            height_policy="max", width_policy="max")
 
@@ -31,7 +31,14 @@ def wgs84_to_web_mercator2(lon, lat):
     return x, y
 
 def haritaOlustur():
+    hover = HoverTool(tooltips=[('Plane Name','@name'),('Lat, Lon', '@address'),('Velocity', '@velocity'),('Altitude', '@altitude')])#add plane name,velocity,altitude
+    a = WheelZoomTool()
+    p.toolbar.active_scroll = a
+    p.add_tools(a)
+    p.add_tools(hover)
     p.add_tile(WMTSTileSource(url=URL, attribution=ATTRIBUTION))
+    p.toolbar.logo = None
+    p.toolbar_location = None
     show(p)
 
 def elemanEkle(lan, lon, planeName, velocity, altitude,angle,isManipulated):
@@ -51,8 +58,7 @@ def elemanEkle(lan, lon, planeName, velocity, altitude,angle,isManipulated):
         image1 = ImageURL(url="url2", x="x", y="y",anchor="center",angle=180,angle_units='deg')
         p.add_glyph(source, image1)
         p.circle('x','y',source=source,fill_color='red',hover_color='yellow',size=15,fill_alpha=0,line_width=0)
-    hover = HoverTool(tooltips=[('Address', '@address'),('Velocity', '@velocity'),('Altitude', '@altitude')])#add plane name,velocity,altitude
-    p.add_tools(hover)
+  
     
 
 def wgs84_to_web_mercator(df, lon="lon", lat="lat"):
