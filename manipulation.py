@@ -75,7 +75,7 @@ class Data_for_aircraft:
     
         # Assume the .txt file same folder with manipulation.py
         #Helper method for Import_UI_variables method
-    def Access_File():
+        def Access_File():
             current_folder = os.getcwd()
             file_name = "input.txt"
             current_path_of_file = os.path.join(current_folder, file_name)
@@ -86,42 +86,39 @@ class Data_for_aircraft:
         # read the .txt file line by line and using for class variable decleration
         # declare all the variables from .txt file to global python variables  after calling
         def Import_UI_variables():
-            # variable names for global declaration
-            variable_names = ["min_latitude", "max_latitude", "min_longitude", "max_longitude", "icao24_of_theAircarft"]
-            # Okunan satırların değerlerini saklamak için listeler oluşturalım
-            latitude_values = []
-            longitude_values = []
-            with open(Access_File(), "r") as dosya:
+                # variable names for global declaration
+                variable_names = ["min_latitude", "max_latitude", "min_longitude", "max_longitude", "icao24_of_theAircarft"]
+                latitude_values=[]
+                longitude_values=[] 
                 
-                icao24_value = ""  # icao24 değişkeninin başlangıç değeri
+                with open(Access_File(), "r") as dosya:
+                    icao24_value = ""
+                    for i, line in enumerate(dosya):
+                        if i<2:
+                            deger = float(line.strip())
+                            latitude_values.append(deger)
+                        elif i<4:
+                        # variable names
+                            deger = float(line.strip())
+                            longitude_values.append(deger)
+                        else:
+                            deger = line.strip()
+                            icao24_value = deger
+                
+                min_latitude = min(latitude_values)
+                max_latitude = max(latitude_values)
+                min_longitude = min(longitude_values)
+                max_longitude = max(longitude_values)
+                return min_latitude, max_latitude, min_longitude, max_longitude, icao24_value
+        
     
-                for i, line in enumerate(dosya):
-                    if i < 2:  # İlk iki satır enlem değerleri
-                        deger = float(line.strip())
-                        latitude_values.append(deger)
-                    elif i < 4:  # Sonraki iki satır boylam değerleri
-                        deger = float(line.strip())
-                        longitude_values.append(deger)
-                    else:  # Son satır icao24 değeri
-                        deger = line.strip()
-                        icao24_value = deger
-    
-            # Min ve max değerlerini belirleyelim
-            min_latitude = min(latitude_values)
-            max_latitude = max(latitude_values)
-            min_longitude = min(longitude_values)
-            max_longitude = max(longitude_values)
-            return min_latitude, max_latitude, min_longitude, max_longitude, icao24_value
-
-    
-    
+        (min_latitude, max_latitude , min_longitude , max_longitude, icao24_of_theAircarft) =  Import_UI_variables()
         # I cannot specify time  why?
         state_vectors = api.get_states(0, None, bbox=(min_latitude, max_latitude, min_longitude, max_longitude))
-    
         if(state_vectors != None):
             print(f'TIME: {state_vectors.time}')
             for s in state_vectors.states:
-                print(f'ICAO24: {s.icao24} Time_Position: {s.time_position}  Longitude: {s.longitude} Latitude: {s.latitude} Velocity: {s.velocity} Geo_altitude: {s.geo_altitude}')
+                #print(f'ICAO24: {s.icao24} Time_Position: {s.time_position}  Longitude: {s.longitude} Latitude: {s.latitude} Velocity: {s.velocity} Geo_altitude: {s.geo_altitude}')
                 
                 aircraft = Data_for_aircraft(s.icao24, s.time_position, s.longitude, s.latitude, s.velocity, s.geo_altitude)
                 
@@ -133,14 +130,18 @@ class Data_for_aircraft:
                     print("Can not manipulate")
         else:
             print("There is no data")
-        return Aircraft_Tuples
+        middle_lat = max_latitude-min_latitude
+        middle_long = max_longitude-min_longitude
+        return Aircraft_Tuples ,middle_lat, middle_long
     
-#printing pairs of original and manipulated data
-Aircraft_Tuples = Data_for_aircraft.returnAircrafData()
-for key in Aircraft_Tuples:
-    (a,b) = Aircraft_Tuples[key]
-    print(f'ICAO24: {a.icao24} Time_Position: {a.time_position}  Longitude: {a.longitude} Latitude: {a.latitude} Velocity: {a.velocity} Geo_altitude: {a.geo_altitude}')
-    print(f'ICAO24: {b.icao24} Time_Position: {b.time_position}  Longitude: {b.longitude} Latitude: {b.latitude} Velocity: {b.velocity} Geo_altitude: {b.geo_altitude}')        
-    print()
-#Check if all aircraft data manipulated
-#print(f'Total Aircraft Number :{len(state_vectors.states)} \n Manipulated Aircrafts Number: {len(Aircraft_Tuples)}')
+# #printing pairs of original and manipulated data
+# print("MAIN IN MANIPULATION.PY------------------------------------------------------------------------------------------------------------------")
+# Aircraft_Tuples, m1, m2 = Data_for_aircraft.returnAircrafData()
+# for key in Aircraft_Tuples:
+#     (a,b) = Aircraft_Tuples[key]
+    
+#     print(f'ICAO24: {a.icao24} Time_Position: {a.time_position}  Longitude: {a.longitude} Latitude: {a.latitude} Velocity: {a.velocity} Geo_altitude: {a.geo_altitude}')
+#     print(f'ICAO24: {b.icao24} Time_Position: {b.time_position}  Longitude: {b.longitude} Latitude: {b.latitude} Velocity: {b.velocity} Geo_altitude: {b.geo_altitude}')        
+#     print()
+# #Check if all aircraft data manipulated
+# #print(f'Total Aircraft Number :{len(state_vectors.states)} \n Manipulated Aircrafts Number: {len(Aircraft_Tuples)}')
