@@ -12,7 +12,7 @@ kullanmak için şunları yükleyiniz:
 	Contibutors:
   		Emirhan Yavuz
     		https://github.com/emirhanyavuzz
-	  Ömer İlbilgi
+	  	Ömer İlbilgi
     		https://github.com/omerilbilgi
   		Sabri Mert Pişkin
     		https://github.com/SabriMertPiskin
