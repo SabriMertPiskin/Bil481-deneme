@@ -30,7 +30,7 @@ def wgs84_to_web_mercator2(lon, lat):
     y = np.log(np.tan((90 + lat) * np.pi / 360.0)) * k
     return x, y
 
-def haritaOlustur():
+def showMap():
     hover = HoverTool(tooltips=[('Plane Name','@name'),('Lat, Lon', '@address'),('Velocity', '@velocity'),('Altitude', '@altitude')])#add plane name,velocity,altitude
     a = WheelZoomTool()
     p.toolbar.active_scroll = a
@@ -68,6 +68,10 @@ def wgs84_to_web_mercator(df, lon="lon", lat="lat"):
     df["url"] = resim_url
     df["url2"] = resim_url2
     return df
+def resetMap():
+    p = figure(tools="pan", x_range=x_range, y_range=y_range,
+           x_axis_type="mercator", y_axis_type="mercator",
+           height_policy="max", width_policy="max")
 
 # Set starting coordinates and display map
 setStartingCoordinates(*ANKARA_COORDINATES)
@@ -76,4 +80,3 @@ setStartingCoordinates(*ANKARA_COORDINATES)
 nycKor = (40.728333, -73.994167)
 elemanEkle(*nycKor, "ucakNewYork",50,60,5,True)
 elemanEkle(40,-70, "ucakNewYork",50,60,5,False)
-haritaOlustur()
