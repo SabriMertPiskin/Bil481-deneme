@@ -135,14 +135,14 @@ class Data_for_aircraft:
         middle_long = max_longitude-min_longitude
         return Aircraft_Tuples ,middle_lat, middle_long
     
- #printing pairs of original and manipulated data
-print("MAIN IN MANIPULATION.PY------------------------------------------------------------------------------------------------------------------")
-Aircraft_Tuples, m1, m2 = Data_for_aircraft.returnAircrafData()
-for key in Aircraft_Tuples:
-    (a,b) = Aircraft_Tuples[key]
+#  #printing pairs of original and manipulated data
+# print("MAIN IN MANIPULATION.PY------------------------------------------------------------------------------------------------------------------")
+# Aircraft_Tuples, m1, m2 = Data_for_aircraft.returnAircrafData()
+# for key in Aircraft_Tuples:
+#     (a,b) = Aircraft_Tuples[key]
     
-    print(f'ICAO24: {a.icao24} Time_Position: {a.time_position}  Longitude: {a.longitude} Latitude: {a.latitude} Velocity: {a.velocity} Geo_altitude: {a.geo_altitude} Angle: {a.angle}')
-    print(f'ICAO24: {b.icao24} Time_Position: {b.time_position}  Longitude: {b.longitude} Latitude: {b.latitude} Velocity: {b.velocity} Geo_altitude: {b.geo_altitude} Angle: {b.angle}')        
-    print()
-#Check if all aircraft data manipulated
-#print(f'Total Aircraft Number :{len(state_vectors.states)} \n Manipulated Aircrafts Number: {len(Aircraft_Tuples)}')
+#     print(f'ICAO24: {a.icao24} Time_Position: {a.time_position}  Longitude: {a.longitude} Latitude: {a.latitude} Velocity: {a.velocity} Geo_altitude: {a.geo_altitude} Angle: {a.angle}')
+#     print(f'ICAO24: {b.icao24} Time_Position: {b.time_position}  Longitude: {b.longitude} Latitude: {b.latitude} Velocity: {b.velocity} Geo_altitude: {b.geo_altitude} Angle: {b.angle}')        
+#     print()
+# #Check if all aircraft data manipulated
+# #print(f'Total Aircraft Number :{len(state_vectors.states)} \n Manipulated Aircrafts Number: {len(Aircraft_Tuples)}')
