@@ -42,7 +42,7 @@ def showMap():
 ucakSourcelar = {}
 def elemanEkle(lan, lon, planeName, velocity, altitude,angle,isManipulated):
     latlon = str(lan) + " ," + str(lon)
-    angle = angle+40
+    angle = 90-(angle+40)
     if(planeName in ucakSourcelar.keys()):  
         source = ucakSourcelar.get(planeName)
         data = dict(name=planeName, lat=[lan], lon=[lon], address=[latlon], velocity=[velocity], altitude=[altitude],angle = [angle])
@@ -97,8 +97,4 @@ def wgs84_to_web_mercator(df, lon="lon", lat="lat"):
     df["url2"] = resim_url2
     return df
 # Set starting coordinates and display map
-setStartingCoordinates(53, 49)
-showMap()
-elemanEkle(60,60,"lol","50","60",0,False)
-saveMap()
 # Add airplane coordinates and display map
