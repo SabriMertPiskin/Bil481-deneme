@@ -42,6 +42,7 @@ def showMap():
 ucakSourcelar = {}
 def elemanEkle(lan, lon, planeName, velocity, altitude,angle,isManipulated):
     latlon = str(lan) + " ," + str(lon)
+    angle = angle+40
     if(planeName in ucakSourcelar.keys()):  
         source = ucakSourcelar.get(planeName)
         data = dict(name=planeName, lat=[lan], lon=[lon], address=[latlon], velocity=[velocity], altitude=[altitude],angle = [angle])
@@ -66,11 +67,11 @@ def elemanEkle(lan, lon, planeName, velocity, altitude,angle,isManipulated):
         #print("-------------------------")
         #print(source.data)
         if(isManipulated == True):
-            image1 = ImageURL(url="url", x="x", y="y",anchor="center",angle=180,angle_units='deg')
+            image1 = ImageURL(url="url", x="x", y="y",anchor="center",angle="angle",angle_units='deg')
             p.add_glyph(source, image1)
             p.circle('x','y',source=source,fill_color='red',hover_color='yellow',size=15,fill_alpha=0,line_width=0)
         else:
-            image1 = ImageURL(url="url2", x="x", y="y",anchor="center",angle=180,angle_units='deg')
+            image1 = ImageURL(url="url2", x="x", y="y",anchor="center",angle="angle",angle_units='deg')
             p.add_glyph(source, image1)
             p.circle('x','y',source=source,fill_color='red',hover_color='yellow',size=15,fill_alpha=0,line_width=0)
   
@@ -96,6 +97,8 @@ def wgs84_to_web_mercator(df, lon="lon", lat="lat"):
     df["url2"] = resim_url2
     return df
 # Set starting coordinates and display map
-
-
+setStartingCoordinates(53, 49)
+showMap()
+elemanEkle(60,60,"lol","50","60",0,False)
+saveMap()
 # Add airplane coordinates and display map
