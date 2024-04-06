@@ -49,6 +49,10 @@ def elemanEkle(lan, lon, planeName, velocity, altitude,angle,isManipulated):
         df = pd.DataFrame(data)
         newdf = wgs84_to_web_mercator(df)
         newSource = ColumnDataSource(newdf)
+        grayCircleData = dict(x = source.data["x"],y = source.data["y"])
+        grayCircleSource = ColumnDataSource(pd.DataFrame(grayCircleData))   
+        p.circle('x','y',source=grayCircleSource,fill_color='gray',hover_color='yellow',size=15)
+
         source.data["lat"] = newSource.data["lat"]
         source.data["lon"] = newSource.data["lon"]
         source.data["velocity"] = newSource.data["velocity"]
@@ -63,9 +67,6 @@ def elemanEkle(lan, lon, planeName, velocity, altitude,angle,isManipulated):
         newdf = wgs84_to_web_mercator(df)
         source = ColumnDataSource(newdf)
         ucakSourcelar[planeName] = source
-        #print(newdf)
-        #print("-------------------------")
-        #print(source.data)
         if(isManipulated == True):
             image1 = ImageURL(url="url", x="x", y="y",anchor="center",angle="angle",angle_units='deg')
             p.add_glyph(source, image1)
@@ -96,5 +97,11 @@ def wgs84_to_web_mercator(df, lon="lon", lat="lat"):
     df["url"] = resim_url
     df["url2"] = resim_url2
     return df
+
+elemanEkle(60,50,"lol",50,50,50,True)
+elemanEkle(60,60,"lol",50,50,50,True)
+elemanEkle(50,50,"loln",50,50,50,False)
+saveMap()
+showMap()
 # Set starting coordinates and display map
 # Add airplane coordinates and display map
