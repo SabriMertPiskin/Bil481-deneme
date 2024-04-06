@@ -1,4 +1,4 @@
-
+Travis CI Build ve test işlemi :
 [![Build Status](https://app.travis-ci.com/emirhanyavuzz/ADSB_project.svg?token=jzpUisp9b9fkzk2aDzxp&branch=main)](https://app.travis-ci.com/emirhanyavuzz/ADSB_project)
 
 
