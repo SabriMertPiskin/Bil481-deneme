@@ -1,3 +1,7 @@
+
+[![Build Status](https://app.travis-ci.com/emirhanyavuzz/ADSB_project.svg?token=jzpUisp9b9fkzk2aDzxp&branch=main)](https://app.travis-ci.com/emirhanyavuzz/ADSB_project)
+
+
 # Bil481-ADSB-Project
 OpenSky API ve Bokeh kullanarak harita üzerinde uçak verilerini göstermek
 kullanmak için şunları yükleyiniz:
