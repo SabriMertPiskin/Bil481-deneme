@@ -49,7 +49,7 @@ def elemanEkle(lan, lon, planeName, velocity, altitude,angle,isManipulated):
         df = pd.DataFrame(data)
         newdf = wgs84_to_web_mercator(df)
         newSource = ColumnDataSource(newdf)
-        grayCircleData = dict(x = source.data["x"],y = source.data["y"])
+        grayCircleData = dict(x = source.data["x"],y = source.data["y"],velocity = source.data["velocity"],address =source.data["address"],altitude =source.data["altitude"],name = planeName )
         grayCircleSource = ColumnDataSource(pd.DataFrame(grayCircleData))   
         p.circle('x','y',source=grayCircleSource,fill_color='gray',hover_color='yellow',size=15)
 
