@@ -51,7 +51,7 @@ def elemanEkle(lan, lon, planeName, velocity, altitude,angle,isManipulated):
         newSource = ColumnDataSource(newdf)
         grayCircleData = dict(x = source.data["x"],y = source.data["y"],velocity = source.data["velocity"],address =source.data["address"],altitude =source.data["altitude"],name = planeName )
         grayCircleSource = ColumnDataSource(pd.DataFrame(grayCircleData))   
-        p.circle('x','y',source=grayCircleSource,fill_color='gray',hover_color='yellow',size=15)
+        p.circle('x','y',source=grayCircleSource,fill_color='#c0c0c0',hover_color='yellow',size=7)
 
         source.data["lat"] = newSource.data["lat"]
         source.data["lon"] = newSource.data["lon"]
@@ -84,7 +84,7 @@ def saveMap():
         html_content = f.readlines()
 
     # Insert the new line at the desired position (4th line)
-    new_line = '    <meta http-equiv="refresh" content="10">\n'
+    new_line = '    <meta http-equiv="refresh" content="15">\n'
     html_content.insert(3, new_line)
 
     # Write the modified content back to the file
@@ -98,10 +98,3 @@ def wgs84_to_web_mercator(df, lon="lon", lat="lat"):
     df["url2"] = resim_url2
     return df
 
-elemanEkle(60,50,"lol",50,50,50,True)
-elemanEkle(60,60,"lol",50,50,50,True)
-elemanEkle(50,50,"loln",50,50,50,False)
-saveMap()
-showMap()
-# Set starting coordinates and display map
-# Add airplane coordinates and display map

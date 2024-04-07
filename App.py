@@ -15,8 +15,9 @@ while(True):
 
     for key in Aircraft_Tuples:
         (NormalAircraft,ManipulatedAircraft) = Aircraft_Tuples[key]
-        print(f"{NormalAircraft.latitude} {ManipulatedAircraft.latitude}")
-        elemanEkle(NormalAircraft.latitude, NormalAircraft.longitude, key, NormalAircraft.velocity, NormalAircraft.geo_altitude, 180,False)
-        elemanEkle(ManipulatedAircraft.latitude, ManipulatedAircraft.longitude, key+"_M", ManipulatedAircraft.velocity, ManipulatedAircraft.geo_altitude, 180,True)
+        print(f"{key}")
+        elemanEkle(NormalAircraft.latitude, NormalAircraft.longitude, key, NormalAircraft.velocity, NormalAircraft.geo_altitude, NormalAircraft.angle,False)
+        elemanEkle(ManipulatedAircraft.latitude, ManipulatedAircraft.longitude, key+"_M", ManipulatedAircraft.velocity, ManipulatedAircraft.geo_altitude, ManipulatedAircraft.angle,True)
+        
     saveMap()
-    time.sleep(11)
+    time.sleep(12)
